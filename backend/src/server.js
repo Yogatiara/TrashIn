@@ -1,4 +1,6 @@
-const app = require('./app');
+import app from "./app.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const { PORT, HOST } = process.env;
 
@@ -8,4 +10,4 @@ const server = app.listen(PORT, () => {
   );
 });
 
-module.exports = server;
+export default server;
