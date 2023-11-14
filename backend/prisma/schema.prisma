@@ -62,7 +62,7 @@ model TPS {
   user    User @relation(fields: [user_id], references: [id])
   user_id Int  @map("user_id")
 
-  images TPSImages[]
+  tpsimages TPSImages[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -77,7 +77,7 @@ model TPSImages {
   tps_id   Int    @map("tps_id")
   user_id  Int    @map("user_id")
 
-  TPS   TPS  @relation(fields: [tps_id], references: [id])
+  tps   TPS  @relation(fields: [tps_id], references: [id])
   users User @relation(fields: [user_id], references: [id])
 
   createdAt DateTime @default(now()) @map("created_at")
