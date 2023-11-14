@@ -1,6 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 import { UserData } from "./UserData.js";
 import { RoleData } from "./RoleData.js";
+import bcrypt from "bcrypt";
+
+const salt = bcrypt.genSaltSync(10);
 
 const prisma = new PrismaClient();
 
@@ -16,9 +19,11 @@ const seedRole = async () => {
 
 const seedUser = async () => {
   return UserData.map(async (user) => {
+    const passwordHash = bcrypt.hashSync(user.password, salt);
     await prisma.user.create({
       data: {
         ...user,
+        password: passwordHash,
       },
     });
   });
