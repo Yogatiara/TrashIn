@@ -1,0 +1,128 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  L
+  P
+}
+
+enum EventStatus {
+  OPEN
+  CLOSED
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  users     User[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("roles")
+}
+
+model User {
+  id           Int    @id @default(autoincrement())
+  name         String
+  email        String @unique
+  phone_number String
+  address      String
+  gender       Gender
+  password     String
+  role_id      Int    @map("role_id")
+
+  roles           Role              @relation(fields: [role_id], references: [id])
+  tps             TPS[]
+  tps_Images      TPSImages[]
+  user_join_event User_Join_Event[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model TPS {
+  id        Int     @id @default(autoincrement())
+  latitude  Float
+  longitude Float
+  address   String
+  notes     String
+  is_clean  Boolean @default(false)
+
+  user    User @relation(fields: [user_id], references: [id])
+  user_id Int  @map("user_id")
+
+  images TPSImages[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("tps")
+}
+
+model TPSImages {
+  id       Int    @id @default(autoincrement())
+  img_name String
+  path     String
+  tps_id   Int    @map("tps_id")
+  user_id  Int    @map("user_id")
+
+  TPS   TPS  @relation(fields: [tps_id], references: [id])
+  users User @relation(fields: [user_id], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("tps_images")
+}
+
+model EventVolunteer {
+  id           Int         @id @default(autoincrement())
+  name         String
+  start_at     DateTime
+  end_at       DateTime
+  notes        String
+  gather_point String
+  quota        Int
+  status       EventStatus
+
+  event_images    EventImages[]
+  user_join_event User_Join_Event[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("event_volunteers")
+}
+
+model EventImages {
+  id                 Int    @id @default(autoincrement())
+  img_name           String
+  path               String
+  event_volunteer_id Int    @map("event_volunteer_id")
+
+  event_volunteer EventVolunteer @relation(fields: [event_volunteer_id], references: [id])
+
+  @@map("event_images")
+}
+
+model User_Join_Event {
+  id                 Int @id @default(autoincrement())
+  user_id            Int
+  event_volunteer_id Int
+
+  user            User           @relation(fields: [user_id], references: [id])
+  event_volunteer EventVolunteer @relation(fields: [event_volunteer_id], references: [id])
+
+  @@map("user_join_event")
+}
