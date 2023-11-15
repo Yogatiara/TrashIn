@@ -119,7 +119,6 @@ const deleteTPSService = async (id) => {
     },
   });
 
-  console.log(images);
   images.forEach((image) => {
     fs.unlinkSync(image.path);
   });

@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import ErrorResponse from "../models/ErrorResponse.js";
+import { insertImageService } from "./EventImages.js";
+import fs from "fs";
 
 const prisma = new PrismaClient();
 
@@ -51,15 +53,17 @@ export const getEventByIdService = async (
   return event;
 };
 
-export const createEventService = async (data) => {
+export const createEventService = async (req) => {
   const { name, start_at, end_at, notes, gather_point, quota, status, images } =
-    data;
+    req.body;
+
+  const { files } = req;
 
   if (status !== "OPEN" && status !== "CLOSED") {
     throw new ErrorResponse("Status must be OPEN or CLOSED", 400);
   }
 
-  if (!images || images.length < 1) {
+  if (!files || files.length < 1) {
     throw new ErrorResponse("Image must be at least 1", 400);
   }
 
@@ -75,20 +79,8 @@ export const createEventService = async (data) => {
     },
   });
 
-  if (images && images.length > 0) {
-    images.map(async (image) => {
-      return await prisma.eventImages.create({
-        data: {
-          img_name: image.img_name,
-          path: image.path,
-          event_volunteer: {
-            connect: {
-              id: event.id,
-            },
-          },
-        },
-      });
-    });
+  if (files && files.length > 0) {
+    await insertImageService(event.id, req);
   }
 
   return event;
@@ -115,16 +107,27 @@ export const updateEventService = async (id, data) => {
   return event;
 };
 
-
 export const deleteEventService = async (id) => {
   const event = await getEventByIdService(id);
   if (!event) {
     throw new ErrorResponse("Event with id " + id + " not found", 400);
   }
 
-  return await prisma.eventVolunteer.delete({
+  const images = await prisma.eventImages.findMany({
+    where: {
+      event_volunteer_id: parseInt(id),
+    },
+  });
+
+  const deletedEvent = await prisma.eventVolunteer.delete({
     where: {
       id: parseInt(id),
     },
   });
+
+  images.forEach((image) => {
+    fs.unlinkSync(image.path);
+  });
+
+  return deletedEvent;
 };

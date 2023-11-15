@@ -21,10 +21,7 @@ export const getAllEvents = async (req, res, next) => {
       data: events,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error)
   }
 };
 
@@ -45,16 +42,13 @@ export const getEventById = async (req, res, next) => {
       data: event,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error)
   }
 };
 
 export const createEvent = async (req, res, next) => {
   try {
-    const event = await createEventService(req.body);
+    const event = await createEventService(req);
 
     res.status(200).json({
       status: "success",
@@ -62,10 +56,7 @@ export const createEvent = async (req, res, next) => {
       data: event,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error)
   }
 };
 
@@ -84,7 +75,6 @@ export const updateEvent = async (req, res, next) => {
   }
 };
 
-
 export const deleteEvent = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -98,4 +88,4 @@ export const deleteEvent = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
