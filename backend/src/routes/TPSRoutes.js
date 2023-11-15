@@ -1,9 +1,11 @@
 import { Router } from "express";
+import tpsStorage from "../utils/storages/tpsImageStorage.js";
 import {
   createTPS,
   deleteTPS,
   getAllTPS,
   getTPSById,
+  insertTPSImage,
   updateTPS,
 } from "../controllers/TPSController.js";
 
@@ -14,5 +16,7 @@ tpsRouter.post("/", createTPS);
 tpsRouter.get("/:id", getTPSById);
 tpsRouter.put("/:id", updateTPS);
 tpsRouter.delete("/:id", deleteTPS);
+
+tpsRouter.post("/:id/image", tpsStorage.array("images"), insertTPSImage);
 
 export default tpsRouter;

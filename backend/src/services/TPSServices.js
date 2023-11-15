@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import ErrorResponse from "../models/ErrorResponse.js";
+import fs from "fs";
 
 const prisma = new PrismaClient();
 
@@ -24,6 +25,7 @@ const getAllTPSService = async (
 };
 
 const getTPSByIdService = async (
+  id,
   withImage = false,
   withUserFromImage = false,
   withUser = false
@@ -47,7 +49,7 @@ const getTPSByIdService = async (
   if (!tps) {
     throw new ErrorResponse("TPS with id " + id + " not found", 400);
   }
-  
+
   return tps;
 };
 
@@ -105,12 +107,24 @@ const deleteTPSService = async (id) => {
   if (!tps) {
     throw new ErrorResponse("TPS with id " + id + " not found", 400);
   }
+  const images = await prisma.tPSImages.findMany({
+    where: {
+      tps_id: parseInt(id),
+    },
+  });
 
-  return await prisma.tPS.delete({
+  const deletedTPS = await prisma.tPS.delete({
     where: {
       id: parseInt(id),
     },
   });
+
+  console.log(images);
+  images.forEach((image) => {
+    fs.unlinkSync(image.path);
+  });
+
+  return deletedTPS;
 };
 
 export {
