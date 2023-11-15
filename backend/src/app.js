@@ -3,6 +3,7 @@ import morgan from "morgan";
 import authRouter from "./routes/AuthRoutes.js";
 import tpsRouter from "./routes/TPSRoutes.js";
 import eventRouter from "./routes/EventRoutes.js";
+import { errorHandler } from "./middlewares/ErrorHandler.js";
 
 const app = express();
 
@@ -17,4 +18,6 @@ app.use("/api/auth", authRouter);
 app.use("/api/tps", tpsRouter);
 app.use("/api/event", eventRouter);
 // main();
+
+app.use(errorHandler);
 export default app;
