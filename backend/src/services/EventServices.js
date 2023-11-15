@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import ErrorResponse from "../models/ErrorResponse.js";
 
 const prisma = new PrismaClient();
 
@@ -44,7 +45,7 @@ export const getEventByIdService = async (
   });
 
   if (!event) {
-    throw new Error("Event with id", id, "not found");
+    throw new ErrorResponse("Event with id", id, "not found", 400);
   }
 
   return event;
@@ -55,11 +56,11 @@ export const createEventService = async (data) => {
     data;
 
   if (status !== "OPEN" && status !== "CLOSED") {
-    throw new Error("Status must be OPEN or CLOSED");
+    throw new ErrorResponse("Status must be OPEN or CLOSED", 400);
   }
 
   if (!images || images.length < 1) {
-    throw new Error("Image must be at least 1");
+    throw new ErrorResponse("Image must be at least 1", 400);
   }
 
   const event = await prisma.eventVolunteer.create({
@@ -118,7 +119,7 @@ export const updateEventService = async (id, data) => {
 export const deleteEventService = async (id) => {
   const event = await getEventByIdService(id);
   if (!event) {
-    throw new Error("Event with id " + id + " not found");
+    throw new ErrorResponse("Event with id " + id + " not found", 400);
   }
 
   return await prisma.eventVolunteer.delete({

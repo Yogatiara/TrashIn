@@ -10,10 +10,7 @@ const registerController = async (req, res, next) => {
       data: user,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error);
   }
 };
 
@@ -30,10 +27,7 @@ const loginController = async (req, res, next) => {
       },
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error);
   }
 }
 

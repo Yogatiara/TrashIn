@@ -4,6 +4,7 @@ import authRouter from "./routes/AuthRoutes.js";
 import tpsRouter from "./routes/TPSRoutes.js";
 import eventRouter from "./routes/EventRoutes.js";
 import { errorHandler } from "./middlewares/ErrorHandler.js";
+import userRouter from "./routes/UserRoutes.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/tps", tpsRouter);
 app.use("/api/event", eventRouter);
+app.use("/api/user", userRouter);
 // main();
 
 app.use(errorHandler);

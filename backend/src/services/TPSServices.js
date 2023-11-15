@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import ErrorResponse from "../models/ErrorResponse.js";
 
 const prisma = new PrismaClient();
 
@@ -44,7 +45,7 @@ const getTPSByIdService = async (
   });
 
   if (!tps) {
-    throw new Error("TPS with id " + id + " not found");
+    throw new ErrorResponse("TPS with id " + id + " not found", 400);
   }
   
   return tps;
@@ -54,7 +55,7 @@ const createTPSService = async (data) => {
   const { latitude, longitude, address, notes, user_id } = data;
 
   if (!user_id) {
-    throw new Error("User id is required");
+    throw new ErrorResponse("User id is required", 400);
   }
 
   const tps = await prisma.tPS.create({
@@ -77,7 +78,7 @@ const updateTPSService = async (id, data) => {
   const { latitude, longitude, address, notes, user_id } = data;
 
   if (!user_id) {
-    throw new Error("User id is required");
+    throw new ErrorResponse("User id is required", 400);
   }
 
   const tps = await prisma.tPS.update({
@@ -102,7 +103,7 @@ const updateTPSService = async (id, data) => {
 const deleteTPSService = async (id) => {
   const tps = await getTPSByIdService(id);
   if (!tps) {
-    throw new Error("TPS with id " + id + " not found");
+    throw new ErrorResponse("TPS with id " + id + " not found", 400);
   }
 
   return await prisma.tPS.delete({

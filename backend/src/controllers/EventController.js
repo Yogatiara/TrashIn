@@ -80,10 +80,7 @@ export const updateEvent = async (req, res, next) => {
       data: event,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error);
   }
 };
 
@@ -99,9 +96,6 @@ export const deleteEvent = async (req, res, next) => {
       data: event,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error);
   }
 }

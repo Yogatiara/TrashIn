@@ -8,7 +8,7 @@ import {
 
 const getAllTPS = async (req, res, next) => {
   const { withImage, withUserFromImage, withUser } = req.query;
-  console.log(withImage, withUserFromImage, withUser)
+  console.log(withImage, withUserFromImage, withUser);
   try {
     const tps = await getAllTPSService(withImage, withUserFromImage, withUser);
     res.status(200).json({
@@ -17,10 +17,7 @@ const getAllTPS = async (req, res, next) => {
       data: tps,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error);
   }
 };
 
@@ -35,10 +32,7 @@ const getTPSById = async (req, res, next) => {
       data: tps,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error);
   }
 };
 
@@ -51,10 +45,7 @@ const createTPS = async (req, res, next) => {
       data: tps,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error);
   }
 };
 
@@ -68,10 +59,7 @@ const updateTPS = async (req, res, next) => {
       data: tps,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error);
   }
 };
 
@@ -85,10 +73,7 @@ const deleteTPS = async (req, res, next) => {
       data: tps,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
+    next(error);
   }
 };
 

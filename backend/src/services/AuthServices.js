@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+import ErrorResponse from "../models/ErrorResponse.js";
 
 const prisma = new PrismaClient();
 const salt = bcrypt.genSaltSync(10);
@@ -17,15 +18,15 @@ const registerService = async (req) => {
   } = req.body;
 
   if (phone_number.length < 10) {
-    throw new Error("Phone number must be at least 10 characters");
+    throw new ErrorResponse("Phone number must be at least 10 characters", 400);
   }
 
   if (password !== confirm_password) {
-    throw new Error("Password not match");
+    throw new ErrorResponse("Password not match", 400);
   }
 
   if (password.length < 8) {
-    throw new Error("Password must be at least 8 characters");
+    throw new ErrorResponse("Password must be at least 8 characters", 400);
   }
 
   const passwordHash = bcrypt.hashSync(password, salt);
@@ -47,7 +48,7 @@ const registerService = async (req) => {
       },
     })
     .catch((err) => {
-      throw new Error(err);
+      throw new ErrorResponse(err, 400);
     });
 
   return user;
@@ -66,13 +67,13 @@ const loginService = async (req) => {
   });
 
   if (!user) {
-    throw new Error("Email not found");
+    throw new ErrorResponse("Email not found", 400);
   }
 
   const isPasswordMatch = bcrypt.compareSync(password, user.password);
 
   if (!isPasswordMatch) {
-    throw new Error("Password not match");
+    throw new ErrorResponse("Password not match", 400);
   }
 
   return user;
