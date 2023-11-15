@@ -5,9 +5,10 @@ import tpsRouter from "./routes/TPSRoutes.js";
 import eventRouter from "./routes/EventRoutes.js";
 import { errorHandler } from "./middlewares/ErrorHandler.js";
 import userRouter from "./routes/UserRoutes.js";
-
+import cors from "cors";
 const app = express();
 
+app.use(cors());
 app.use(express.static('public'))
 app.use(morgan("dev"));
 app.use(express.json());
