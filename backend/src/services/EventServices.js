@@ -131,3 +131,44 @@ export const deleteEventService = async (id) => {
 
   return deletedEvent;
 };
+
+export const userEnrollEventService = async (id, req) => {
+  const { user_id } = req.body;
+  console.log(user_id);
+
+  const event = await prisma.eventVolunteer.findUnique({
+    where: {
+      id: parseInt(id),
+    },
+    select: {
+      quota: true,
+      _count: {
+        select: {
+          user_join_event: true,
+        },
+      },
+    },
+  });
+
+  if (event._count.user_join_event >= event.quota) {
+    throw new ErrorResponse("Quota limit exceeded", 400);
+  }
+
+  const isRegistered = await prisma.user_Join_Event.findFirst({
+    where: {
+      user_id: parseInt(user_id),
+      event_volunteer_id: parseInt(id),
+    },
+  });
+
+  if (isRegistered) {
+    throw new ErrorResponse("User already registered", 400);
+  }
+
+  return await prisma.user_Join_Event.create({
+    data: {
+      user_id: parseInt(user_id),
+      event_volunteer_id: parseInt(id),
+    },
+  });
+};

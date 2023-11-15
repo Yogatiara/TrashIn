@@ -4,6 +4,7 @@ import {
   getAllEventsService,
   getEventByIdService,
   updateEventService,
+  userEnrollEventService,
 } from "../services/EventServices.js";
 
 export const getAllEvents = async (req, res, next) => {
@@ -21,7 +22,7 @@ export const getAllEvents = async (req, res, next) => {
       data: events,
     });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
@@ -42,7 +43,7 @@ export const getEventById = async (req, res, next) => {
       data: event,
     });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
@@ -56,7 +57,7 @@ export const createEvent = async (req, res, next) => {
       data: event,
     });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
@@ -79,6 +80,22 @@ export const deleteEvent = async (req, res, next) => {
   try {
     const { id } = req.params;
     const event = await deleteEventService(id);
+
+    res.status(200).json({
+      status: "success",
+      message: "Delete TPS success",
+      data: event,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const userEnrollEvent = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const event = await userEnrollEventService(id, req);
 
     res.status(200).json({
       status: "success",
