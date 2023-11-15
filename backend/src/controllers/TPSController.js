@@ -7,8 +7,10 @@ import {
 } from "../services/TPSServices.js";
 
 const getAllTPS = async (req, res, next) => {
+  const { withImage, withUserFromImage, withUser } = req.query;
+  console.log(withImage, withUserFromImage, withUser)
   try {
-    const tps = await getAllTPSService();
+    const tps = await getAllTPSService(withImage, withUserFromImage, withUser);
     res.status(200).json({
       status: "success",
       message: "Get all TPS success",

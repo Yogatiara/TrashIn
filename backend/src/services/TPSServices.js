@@ -2,34 +2,51 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const getAllTPSService = async () => {
-  const tps = await prisma.tPS.findMany();
+const getAllTPSService = async (
+  withImage = false,
+  withUserFromImage = false,
+  withUser = false
+) => {
+  const tps = await prisma.tPS.findMany({
+    include: {
+      tpsimages: withImage
+        ? {
+            include: {
+              users: Boolean(withUserFromImage) ?? false,
+            },
+          }
+        : false,
+      user: Boolean(withUser) ?? false,
+    },
+  });
   return tps;
 };
 
 const getTPSByIdService = async (
-  id,
   withImage = false,
-  withImageByUser = false
+  withUserFromImage = false,
+  withUser = false
 ) => {
   const tps = await prisma.tPS.findUnique({
     where: {
       id: parseInt(id),
     },
-    // include: {
-    //   tpsimages: withImage
-    //     ? {
-    //         include: {
-    //           users: Boolean(withImageByUser) ?? false,
-    //         },
-    //       }
-    //     : false,
-    // },
+    include: {
+      tpsimages: withImage
+        ? {
+            include: {
+              users: Boolean(withUserFromImage) ?? false,
+            },
+          }
+        : false,
+      user: Boolean(withUser) ?? false,
+    },
   });
 
   if (!tps) {
     throw new Error("TPS with id " + id + " not found");
   }
+  
   return tps;
 };
 
