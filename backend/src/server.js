@@ -1,4 +1,4 @@
-const app = require('./app');
+import app from "./app.js";
 
 const { PORT, HOST } = process.env;
 
@@ -8,4 +8,4 @@ const server = app.listen(PORT, () => {
   );
 });
 
-module.exports = server;
+export default server;

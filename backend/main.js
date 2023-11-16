@@ -1,3 +1,5 @@
-require('dotenv').config();
-require('./src/server');
-require('./configs/databaseConfig');
+import dotenv from "dotenv";
+dotenv.config();
+
+import "./src/server.js";
+
