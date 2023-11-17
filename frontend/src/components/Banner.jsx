@@ -15,7 +15,7 @@ const Banner = () => {
       <div className="absolute top-52 left-[85px] drop-shadow-2xl">
         <h1
           style={{
-            WebkitTextStroke: "2px #004E64",
+            WebkitTextStroke: "1px #004E64",
           }}
           className="  text-white text-6xl font-extrabold "
         >
@@ -24,8 +24,8 @@ const Banner = () => {
 
         <div className="w-[546px]">
           <p className="text-white text-xl pt-2 font-medium ">
-            Informasi terkait TPS Ilegal disekitar anda serta Layanan untuk
-            menjadi Volunteers Kebersihan
+            Informasi terkait TPS Ilegal disekitar anda serta layanan untuk
+            menjadi volunteers Kebersihan
           </p>
         </div>
 
