@@ -62,8 +62,8 @@ const createTPSService = async (data) => {
 
   const tps = await prisma.tPS.create({
     data: {
-      latitude,
-      longitude,
+      latitude: parseFloat(latitude),
+      longitude: parseFloat(longitude),
       address,
       notes,
       user: {

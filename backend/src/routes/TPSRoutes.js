@@ -12,7 +12,7 @@ import {
 const tpsRouter = Router();
 
 tpsRouter.get("/", getAllTPS);
-tpsRouter.post("/", createTPS);
+tpsRouter.post("/", tpsStorage.array("images"), createTPS);
 tpsRouter.get("/:id", getTPSById);
 tpsRouter.put("/:id", updateTPS);
 tpsRouter.delete("/:id", deleteTPS);

@@ -22,6 +22,7 @@ export const getAllUsers = async (req, res, next) => {
 export const getUserById = async (req, res, next) => {
   try {
     const { id } = req.params;
+    console.log(id);
     const { withTPS, withEvents } = req.query;
     const user = await getUserByIdService(
       id,

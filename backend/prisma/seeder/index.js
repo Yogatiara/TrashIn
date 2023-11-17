@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { UserData } from "./UserData.js";
 import { RoleData } from "./RoleData.js";
 import bcrypt from "bcrypt";
+import { TPSData } from "./TPSData.js";
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -29,15 +30,29 @@ const seedUser = async () => {
   });
 };
 
+const seedTPS = async () => {
+  return TPSData.map(async (tps) => {
+    await prisma.tPS.create({
+      data: {
+        ...tps,
+      },
+    });
+  });
+};
+
 async function main() {
   await prisma.role.deleteMany();
   await prisma.user.deleteMany();
+  await prisma.tPS.deleteMany();
 
   seedRole();
   console.log("Role data seeded successfully");
 
   seedUser();
   console.log("User data seeded successfully");
+
+  seedTPS();
+  console.log("TPS data seeded successfully");
 }
 
 main()
