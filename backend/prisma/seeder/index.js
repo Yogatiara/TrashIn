@@ -34,7 +34,16 @@ const seedTPS = async () => {
   return TPSData.map(async (tps) => {
     await prisma.tPS.create({
       data: {
-        ...tps,
+        address: tps.address,
+        latitude: tps.latitude,
+        longitude: tps.longitude,
+        notes: tps.notes,
+        is_clean: tps.is_clean,
+        user: {
+          connect: {
+            id: 3,
+          }
+        }
       },
     });
   });
@@ -50,8 +59,9 @@ async function main() {
 
   seedUser();
   console.log("User data seeded successfully");
-
-  seedTPS();
+  setTimeout(() => {
+    seedTPS();
+  }, 2000)
   console.log("TPS data seeded successfully");
 }
 
