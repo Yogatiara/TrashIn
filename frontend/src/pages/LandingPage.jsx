@@ -1,14 +1,15 @@
 import Headroom from "react-headroom";
 import ScrollToTop from "react-scroll-to-top";
 
-import Navbar from "../components/Navbar";
-import Banner from "../components/Banner";
-import ServiceCard from "../components/cards/ServiceCard";
-import LogoFrame from "../components/LogoFrame";
-import AboutUsCard from "../components/cards/AboutUsCard";
-import Map from "../components/Map";
-import ScrollOnTopButton from "../components/ScrollOntopButton";
-import Footer from "../components/Footer";
+import Navbar from "../components/landingpage/Navbar";
+import Banner from "../components/landingpage/Banner";
+import ServiceCard from "../components/landingpage/cards/ServiceCard";
+import LogoFrame from "../components/landingpage/LogoFrame";
+import AboutUsCard from "../components/landingpage/cards/AboutUsCard";
+import Map from "../components/landingpage/Map";
+import ScrollOnTopButton from "../components/landingpage/ScrollOntopButton";
+import Footer from "../components/landingpage/Footer";
+import EventCard from "../components/landingpage/cards/EventCard";
 
 const LandingPage = () => {
   return (
@@ -26,7 +27,7 @@ const LandingPage = () => {
             Layanan yang kami berikan
           </h1>
 
-          <div className="mt-16">
+          <div className="mt-20">
             <ServiceCard />
           </div>
         </div>
@@ -36,7 +37,7 @@ const LandingPage = () => {
             <LogoFrame />
           </div>
 
-          <div className="mt-1 mb-52">
+          <div className="mt-1">
             <h1 className="text-3xl font-bold text-[#004E64]  ">
               Tentang kami
             </h1>
@@ -46,13 +47,27 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="w-[770px] mx-auto font-montserrat">
+        <div className="w-[770px] mx-auto mt-48  font-montserrat">
           <h1 className="text-3xl font-bold text-[#004E64] text-center  ">
             Lokasi TPS Ilegal
           </h1>
 
           <div className="mt-16">
             <Map />
+          </div>
+        </div>
+
+        <div className=" mt-48 font-montserrat text-center">
+          <h1 className="text-3xl font-bold text-[#004E64]  text-center ">
+            Kegiatan bersih lingkungan
+          </h1>
+          <div className="mt-20 mx-auto">
+            <EventCard />
+          </div>
+          <div className="mt-7">
+            <a className="text-white" href="#">
+              Lihat selangkapnya....
+            </a>
           </div>
         </div>
 
