@@ -29,7 +29,7 @@ const Map = () => {
   return (
     <>
       <MapContainer
-        className="h-[450px] w-full rounded-xl z-0  shadow-2xl"
+        className="h-[680px] w-full rounded-xl z-0  shadow-2xl mx-auto"
         center={[-0.433603, 116.984715]}
         zoom={15}
       >

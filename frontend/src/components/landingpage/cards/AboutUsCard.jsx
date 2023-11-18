@@ -2,7 +2,7 @@ const AboutUsCard = () => {
   return (
     <>
       <div>
-        <p className="text-white w-[500px] text-align text-justify font-montserrat">
+        <p className="text-white w-[700px] text-xl text-align text-justify font-montserrat">
           TrashIn adalah layanan berbasis aplikasi yang memberikan solusi bagi
           permasalahan sampah di Kota Tenggarong. Aplikasi ini bertujuan untuk
           memberikan informasi kepada masyarakat mengenai kondisi lingkungan

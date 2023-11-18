@@ -22,8 +22,8 @@ const LandingPage = () => {
           </Headroom>
         </div>
         <Banner />
-        <div className="mt-72 place-content-center font-montserrat ">
-          <h1 className="text-3xl font-bold text-[#004E64]  text-center ">
+        <div className="h-screen flex flex-col justify-center place-content-center font-montserrat bg-[#004E64]">
+          <h1 className="text-5xl font-bold text-[#2FC8B0] text-center ">
             Layanan yang kami berikan
           </h1>
 
@@ -32,13 +32,13 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center mt-72 space-x-16 font-montserrat ">
-          <div>
+        <div className="flex justify-center h-screen gap-12 items-center space-x-16 font-montserrat ">
+          <>
             <LogoFrame />
-          </div>
+          </>
 
           <div className="mt-1">
-            <h1 className="text-3xl font-bold text-[#004E64]  ">
+            <h1 className="text-4xl font-bold text-[#004E64]  ">
               Tentang kami
             </h1>
             <div className="mt-10">
@@ -47,31 +47,29 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="w-[770px] mx-auto mt-48  font-montserrat">
-          <h1 className="text-3xl font-bold text-[#004E64] text-center  ">
+        <div className="w-full h-screen flex flex-col justfiy-center items-center place-content-center font-montserrat gap-8 bg-[#004E64]">
+          <h1 className="text-4xl font-bold text-[#2FC8B0] text-center">
             Lokasi TPS Ilegal
           </h1>
 
-          <div className="mt-16">
+          <div className="w-[66%] h-fit">
             <Map />
           </div>
         </div>
 
-        <div className=" mt-48 font-montserrat text-center">
-          <h1 className="text-3xl font-bold text-[#004E64]  text-center ">
+        <div className="h-screen gap-10 flex flex-col justify-center items-center font-montserrat text-center ">
+          <h1 className="text-4xl font-bold text-[#004E64]  text-center ">
             Kegiatan bersih lingkungan
           </h1>
-          <div className="mt-20 mx-auto">
+          <div className="mx-auto">
             <EventCard />
           </div>
-          <div className="mt-7">
-            <a className="text-white" href="#">
-              Lihat selangkapnya....
-            </a>
-          </div>
+          <a className="text-white mt-4" href="#">
+            Lihat selangkapnya....
+          </a>
         </div>
 
-        <div className="mt-60">
+        <div>
           <Footer />
         </div>
       </div>
