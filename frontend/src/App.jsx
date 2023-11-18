@@ -10,6 +10,7 @@ import ListTps from "./pages/dashboard-page/tps/ListTps";
 import ShowUser from "./pages/dashboard-page/user/ShowUser";
 import ShowEvent from "./pages/dashboard-page/event/ShowEvent";
 import ShowTps from "./pages/dashboard-page/tps/ShowTps";
+import EditAkun from "./pages/dashboard-page/EditAkun";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
               <Route index={true} element={<ListTps />}></Route>
               <Route path={":id"} element={<ShowTps />}></Route>
             </Route>
+            <Route path="edit-akun" element={<EditAkun />}></Route>
           </Route>
           <Route path="/login-admin" element={<Login />}></Route>
         </Routes>
