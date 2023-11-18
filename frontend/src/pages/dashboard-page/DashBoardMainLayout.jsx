@@ -4,15 +4,13 @@ import { Outlet } from "react-router-dom";
 
 const DashBoardMainLayout = () => {
   return (
-    <>
-      <div className="bg-[#2FC8B0] bg-opacity-40 w-full h-screen">
-        <Navbar />
-        <SideBar />
-      </div>
-      <div className="ml-64 mt-28 p-7 ">
+    <div className="bg-[#2FC8B0] bg-fixed min-h-screen">
+      <Navbar />
+      <SideBar />
+      <div className="ml-64 pt-[140px] p-7 z-0">
         <Outlet />
       </div>
-    </>
+    </div>
   );
 };
 

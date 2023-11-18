@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 import { getTpsData } from "../api/fetching";
 
-const Map = ({ height, weight, zoom, show }) => {
+const Map = ({ height, weight, zoom, show, onMarkerClick }) => {
   const [tpsData, setTpsData] = useState([]);
   useEffect(() => {
     getTpsData()
@@ -21,7 +21,7 @@ const Map = ({ height, weight, zoom, show }) => {
   }, []);
 
   const customIcon = new Icon({
-    iconUrl: "./icons/garbage.png",
+    iconUrl: "/icons/garbage.png",
     iconSize: [30, 30],
   });
 
@@ -31,7 +31,7 @@ const Map = ({ height, weight, zoom, show }) => {
   return (
     <>
       <MapContainer
-        className={`h-${height} w-${weight} rounded-xl z-0  shadow-2xl`}
+        className={`h-${height} w-${weight} rounded-xl z-0 shadow-2xl`}
         center={[-0.433603, 116.984715]}
         zoom={zoom}
       >
@@ -52,6 +52,11 @@ const Map = ({ height, weight, zoom, show }) => {
                   ]}
                   icon={customIcon}
                   key={data.id}
+                  eventHandlers={{
+                    click: () => {
+                      onMarkerClick(data);
+                    }
+                  }}
                 >
                   <Popup>
                     <p>Alamat : {data.address}</p>

@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import DashBoardMainLayout from "./pages/dashboard-page/DashBoardMainLayout";
-import "./App.css";
 import Home from "./pages/dashboard-page/Home";
 import Login from "./pages/Login";
 import ListUser from "./pages/dashboard-page/user/ListUser";
@@ -10,7 +9,11 @@ import ListTps from "./pages/dashboard-page/tps/ListTps";
 import ShowUser from "./pages/dashboard-page/user/ShowUser";
 import ShowEvent from "./pages/dashboard-page/event/ShowEvent";
 import ShowTps from "./pages/dashboard-page/tps/ShowTps";
+<<<<<<< HEAD
 import EditAkun from "./pages/dashboard-page/EditAkun";
+=======
+import CreateEvent from "./pages/dashboard-page/event/CreateEvent";
+>>>>>>> 85268f89781730438923617b36ce461ccbd5cd11
 
 const App = () => {
   return (
@@ -26,6 +29,7 @@ const App = () => {
             </Route>
             <Route path="list-event">
               <Route index={true} element={<ListEvent />}></Route>
+              <Route path={"create"} element={<CreateEvent />}></Route>
               <Route path={":id"} element={<ShowEvent />}></Route>
             </Route>
             <Route path="list-tps">

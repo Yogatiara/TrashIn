@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
-    <>
-      <aside className="fixed w-64 h-full  bg-[#004E64] ">
-        <ul className="mt-32 font-md px-6 space-y-2 text-xl">
+    <aside className="fixed w-64 h-screen bg-[#004E64] z-40 flex flex-col">
+      <ul className="font-md px-6 text-xl mt-28 pt-4 flex-1 flex flex-col justify-between">
+        <div className="space-y-2">
           <li>
             <Link to={"/dashboard"}>
               <div
@@ -85,29 +85,29 @@ const SideBar = () => {
               </div>
             </a>
           </li>
-          <div className="flex justify-center ">
-            <button
-              type="button"
-              className="flex items-center w-full mt-[600px] text-lg space-x-2  px-5 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-2 focus:ring-red-300 font-medium rounded-lg  py-2.5 me-2 mb-2 "
+        </div>
+        <div className="flex justify-center ">
+          <button
+            type="button"
+            className="flex items-center w-full text-lg space-x-2  px-5 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-2 focus:ring-red-300 font-medium rounded-lg  py-2.5 me-2 mb-2 "
+          >
+            <svg
+              className=" h-5 text-white dark:text-dark"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 16 16"
             >
-              <svg
-                className=" h-5 text-white dark:text-dark"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  stroke="currentColor"
-                  d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"
-                />
-              </svg>
-              <div className=" text-white">Log Out</div>
-            </button>
-          </div>
-        </ul>
-      </aside>
-    </>
+              <path
+                stroke="currentColor"
+                d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"
+              />
+            </svg>
+            <div className=" text-white">Log Out</div>
+          </button>
+        </div>
+      </ul>
+    </aside>
   );
 };
 
