@@ -6,7 +6,6 @@ const salt = bcrypt.genSaltSync(10);
 const prisma = new PrismaClient();
 
 export const getAllUsersService = async (withRoles = false) => {
-  const { withRoles } = req.query;
   const users = await prisma.user.findMany({
     include: {
       roles: Boolean(withRoles) ?? false,
