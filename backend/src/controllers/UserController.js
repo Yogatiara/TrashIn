@@ -2,6 +2,7 @@ import {
   getAllUsersService,
   getUserByIdService,
   getUserTPSService,
+  getUserVolunteerHistoryService,
   updatePasswordService,
   updateUserService,
 } from "../services/UserServices.js";
@@ -75,6 +76,21 @@ export const updateUserPassword = async (req, res, next) => {
       status: "success",
       message: "Update user password success",
       data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUserVolunteerHistory = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const volunteer = await getUserVolunteerHistoryService(id);
+    res.status(200).json({
+      status: "success",
+      message: "Get user volunteer history success",
+      data: volunteer,
     });
   } catch (error) {
     next(error);

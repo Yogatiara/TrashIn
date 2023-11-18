@@ -3,34 +3,34 @@ import DownloadButton from "./DownloadButton";
 const Banner = () => {
   return (
     <>
-      <div className="relative w-full h-[512px]">
-        <div>
+      <div className="relative w-full h-screen">
+        <div className="h-full absolute w-full">
           <img
-            className="object-cover w-full h-[655px] brightness-50 "
+            className="object-cover w-full h-full brightness-50 "
             src="./images/tpa.png"
             alt="tpa image"
           />
         </div>
-      </div>
-      <div className="absolute top-52 left-[85px] drop-shadow-2xl">
-        <h1
-          style={{
-            WebkitTextStroke: "1px #004E64",
-          }}
-          className="  text-white text-6xl font-extrabold "
-        >
-          TrashIn
-        </h1>
+        <div className="h-full flex flex-col justify-center px-24 drop-shadow-2xl">
+          <h1
+            style={{
+              WebkitTextStroke: "1px #004E64",
+            }}
+            className="  text-white text-6xl font-extrabold "
+          >
+            TrashIn
+          </h1>
 
-        <div className="w-[546px]">
-          <p className="text-white text-xl pt-2 font-medium ">
-            Informasi terkait TPS Ilegal disekitar anda serta layanan untuk
-            menjadi volunteers Kebersihan
-          </p>
-        </div>
+          <div className="w-[810px]">
+            <p className="text-white text-3xl pt-2 font-medium ">
+              Informasi terkait TPS Ilegal disekitar anda serta layanan untuk
+              menjadi volunteers Kebersihan
+            </p>
+          </div>
 
-        <div className="mt-6">
-          <DownloadButton />
+          <div className="mt-6">
+            <DownloadButton />
+          </div>
         </div>
       </div>
     </>
