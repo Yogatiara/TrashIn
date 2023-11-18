@@ -1,4 +1,4 @@
-import LoginForm from "../components/Login/LoginForm";
+import LoginForm from "../components/login/LoginForm";
 
 const Login = () => {
   return (
@@ -25,7 +25,7 @@ const Login = () => {
         <img
           className="object-cover w-full h-full"
           src="./images/logintps.jpg"
-          alt="tpa image"
+          alt="tps image"
         />
       </div>
     </aside>

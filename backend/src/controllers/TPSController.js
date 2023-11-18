@@ -1,3 +1,4 @@
+import ErrorResponse from "../models/ErrorResponse.js";
 import { insertImageService } from "../services/TPSImagesServices.js";
 import {
   createTPSService,
@@ -9,7 +10,6 @@ import {
 
 const getAllTPS = async (req, res, next) => {
   const { withImage, withUserFromImage, withUser } = req.query;
-  console.log(withImage, withUserFromImage, withUser);
   try {
     const tps = await getAllTPSService(withImage, withUserFromImage, withUser);
     res.status(200).json({
@@ -24,9 +24,15 @@ const getAllTPS = async (req, res, next) => {
 
 const getTPSById = async (req, res, next) => {
   try {
-    const { withImage, withImageByUser } = req.query;
+    const { withImage, withUserFromImage, withUser, withEvent } = req.query;
     const { id } = req.params;
-    const tps = await getTPSByIdService(id, withImage);
+    const tps = await getTPSByIdService(
+      id,
+      withImage === "true",
+      withUserFromImage === "true",
+      withUser === "true",
+      withEvent === "true"
+    );
     res.status(200).json({
       status: "success",
       message: "Get TPS by id success",
@@ -40,10 +46,14 @@ const getTPSById = async (req, res, next) => {
 const createTPS = async (req, res, next) => {
   try {
     const tps = await createTPSService(req.body);
+    const images = await insertImageService(tps.id, req);
     res.status(200).json({
       status: "success",
       message: "Create TPS success",
-      data: tps,
+      data: {
+        tps,
+        images,
+      },
     });
   } catch (error) {
     next(error);
@@ -88,8 +98,16 @@ const insertTPSImage = async (req, res, next) => {
       data: data,
     });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
 
-export { getAllTPS, getTPSById, createTPS, updateTPS, deleteTPS, insertTPSImage };
+export {
+  getAllTPS,
+  getTPSById,
+  createTPS,
+  updateTPS,
+  deleteTPS,
+  insertTPSImage,
+};

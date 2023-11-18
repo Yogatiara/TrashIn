@@ -1,4 +1,5 @@
 import {
+  checkUserEnrollmentService,
   createEventService,
   deleteEventService,
   getAllEventsService,
@@ -27,14 +28,15 @@ export const getAllEvents = async (req, res, next) => {
 };
 
 export const getEventById = async (req, res, next) => {
-  const { withImages, withUsers } = req.query;
+  const { withImage, withUsers, withTPS } = req.query;
   const { id } = req.params;
-
+  console.log(withImage, withTPS);
   try {
     const event = await getEventByIdService(
       id,
-      withImages === "true",
-      withUsers === "true"
+      withImage === "true",
+      withUsers === "true",
+      withTPS === "true"
     );
 
     res.status(200).json({
@@ -99,7 +101,22 @@ export const userEnrollEvent = async (req, res, next) => {
 
     res.status(200).json({
       status: "success",
-      message: "Delete TPS success",
+      message: "Successfully enrolled to event",
+      data: event,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const checkUserEnrollment = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const event = await checkUserEnrollmentService(id, req);
+
+    res.status(200).json({
+      status: "success",
+      message: "Successfully check user enrollment",
       data: event,
     });
   } catch (error) {

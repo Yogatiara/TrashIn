@@ -5,8 +5,12 @@ import bcrypt from "bcrypt";
 const salt = bcrypt.genSaltSync(10);
 const prisma = new PrismaClient();
 
-export const getAllUsersService = async () => {
-  const users = await prisma.user.findMany();
+export const getAllUsersService = async (withRoles = false) => {
+  const users = await prisma.user.findMany({
+    include: {
+      roles: Boolean(withRoles) ?? false,
+    },
+  });
   return users;
 };
 
@@ -134,7 +138,7 @@ export const userJoinEventService = async (id) => {
 };
 
 export const updateUserService = async (id, req) => {
-  const { name, email, phone_number, address, gender } = req;
+  const { name, email, phone_number, address } = req;
 
   const user = await prisma.user.findUnique({
     where: {
@@ -155,7 +159,6 @@ export const updateUserService = async (id, req) => {
       email,
       phone_number,
       address,
-      gender,
     },
   });
 
@@ -195,4 +198,74 @@ export const updatePasswordService = async (id, req) => {
   });
 
   return newUser;
+};
+
+export const getUserEnrolledEventService = async (id) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: parseInt(id),
+    },
+  });
+
+  if (!user) {
+    throw new ErrorResponse("User not found", 404);
+  }
+
+  const user_join_event = await prisma.user_Join_Event.findMany({
+    where: {
+      user_id: parseInt(id),
+    },
+    include: {
+      event: true,
+    },
+  });
+
+  return user_join_event;
+};
+
+export const getUserEnrolledEventByIdService = async (id, event_id) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: parseInt(id),
+    },
+  });
+
+  if (!user) {
+    throw new ErrorResponse("User not found", 404);
+  }
+
+  const user_join_event = await prisma.user_Join_Event.findUnique({
+    where: {
+      user_id: parseInt(id),
+      event_id: parseInt(event_id),
+    },
+    include: {
+      event: true,
+    },
+  });
+
+  return user_join_event;
+};
+
+export const getUserVolunteerHistoryService = async (id) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: parseInt(id),
+    },
+  });
+
+  if (!user) {
+    throw new ErrorResponse("User not found", 404);
+  }
+
+  const user_join_event = await prisma.user_Join_Event.findMany({
+    where: {
+      user_id: parseInt(id),
+    },
+    include: {
+      event_volunteer: true,
+    },
+  });
+
+  return user_join_event;
 };

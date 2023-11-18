@@ -63,6 +63,7 @@ model TPS {
   user_id Int? @map("user_id")
 
   tpsimages TPSImages[]
+  events   EventVolunteer[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -98,6 +99,9 @@ model EventVolunteer {
 
   event_images    EventImages[]
   user_join_event User_Join_Event[]
+
+  tps TPS @relation(fields: [tps_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  tps_id Int @map("tps_id")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 export const insertImageService = async (id, req) => {
   const { files } = req;
+  console.log(files);
   const { user_id } = req.body;
   const images = files.map((file) => {
     return {
