@@ -8,7 +8,8 @@ import {
 
 export const getAllUsers = async (req, res, next) => {
   try {
-    const users = await getAllUsersService();
+    const { withRoles } = req.query;
+    const users = await getAllUsersService(withRoles === "true");
     res.status(200).json({
       status: "success",
       message: "Get all users success",
