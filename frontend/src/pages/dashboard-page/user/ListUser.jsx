@@ -58,7 +58,9 @@ const ListUser = () => {
     enableFullScreenToggle: false,
     positionActionsColumn: "last",
     enableRowActions: true,
-    renderRowActions: ({ row }) => <Button to={row.original.id} />,
+    renderRowActions: ({ row }) => (
+      <Button to={`/dashboard/list-user/${row.original.id}`} />
+    ),
   });
 
   if (userData.length === 0) {
