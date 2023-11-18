@@ -3,6 +3,7 @@ import LandingPage from "./pages/LandingPage";
 import DashBoardMainLayout from "./pages/dashboard-page/DashBoardMainLayout";
 import "./App.css";
 import Home from "./pages/dashboard-page/Home";
+import Login from "./pages/Login";
 import ListUser from "./pages/dashboard-page/user/ListUser";
 import ListEvent from "./pages/dashboard-page/event/ListEvent";
 import ListTps from "./pages/dashboard-page/tps/ListTps";
@@ -31,6 +32,7 @@ const App = () => {
               <Route path={":id"} element={<ShowTps />}></Route>
             </Route>
           </Route>
+          <Route path="/login-admin" element={<Login />}></Route>
         </Routes>
       </Router>
     </>
