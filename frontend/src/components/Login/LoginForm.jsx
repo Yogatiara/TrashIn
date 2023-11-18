@@ -1,6 +1,6 @@
 const LoginForm = () => {
   return (
-    <div className="block max-w p-12 bg-gray-200 mx-20 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <div className="block max-w p-16 bg-gray-200 mx-32 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <h1 className="font-bold text-center text-6xl text-[#004E64]">Login</h1>
       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
         Email

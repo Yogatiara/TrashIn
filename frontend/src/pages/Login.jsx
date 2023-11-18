@@ -23,8 +23,8 @@ const Login = () => {
       </div>
       <div className="content" style={{ flex: 6 }}>
         <img
-          className="object-cover w-full h-full brightness-50"
-          src="./images/tpa.png"
+          className="object-cover w-full h-full"
+          src="./images/logintps.jpg"
           alt="tpa image"
         />
       </div>
