@@ -16,13 +16,13 @@ const Banner = () => {
             style={{
               WebkitTextStroke: "1px #004E64",
             }}
-            className="  text-white text-6xl font-extrabold "
+            className="  text-white text-7xl font-extrabold "
           >
             TrashIn
           </h1>
 
-          <div className="w-[810px]">
-            <p className="text-white text-3xl pt-2 font-medium ">
+          <div className="w-[700px]">
+            <p className="text-white text-2xl pt-2 font-medium ">
               Informasi terkait TPS Ilegal disekitar anda serta layanan untuk
               menjadi volunteers Kebersihan
             </p>

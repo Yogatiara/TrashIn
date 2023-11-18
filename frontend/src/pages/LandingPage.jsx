@@ -32,12 +32,12 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center h-screen gap-12 items-center space-x-16 font-montserrat ">
+        <div className="flex justify-center h-screen gap-12 items-center space-x-10 font-montserrat ">
           <>
             <LogoFrame />
           </>
 
-          <div className="mt-1">
+          <div className="mb-16">
             <h1 className="text-4xl font-bold text-[#004E64]  ">
               Tentang kami
             </h1>
@@ -64,9 +64,6 @@ const LandingPage = () => {
           <div className="mx-auto">
             <EventCard />
           </div>
-          <a className="text-white mt-4" href="#">
-            Lihat selangkapnya....
-          </a>
         </div>
 
         <div>

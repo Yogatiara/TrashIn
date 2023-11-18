@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <>
       {/* <div></div> */}
-      <footer className=" max-w-screen flex flex-wrap justify-between w-full pl-16 pr-16 bg-[#004E64] p-10 ">
+      <footer className=" max-w-screen flex flex-wrap justify-between w-full pl-20 pr-20 bg-[#004E64] p-10 ">
         <div>
           <a href="" className="flex items-center space-x-0.5 ">
             <img
@@ -21,9 +21,11 @@ const Footer = () => {
 
         <div className="mt-5 mr-20">
           <DownloadButton />
-          <p className="text-white text-sm pt-8 font-thin font-montserrat">
-            © 2023 Pahlawan Kebersihan. All Rights Reserved.
-          </p>
+          <div className="ml-4">
+            <p className="text-white text-xl pt-8 font-thin font-montserrat">
+              © 2023 Pahlawan Kebersihan. All Rights Reserved.
+            </p>
+          </div>
         </div>
 
         <div className="font-montserrat text-white">

@@ -20,10 +20,10 @@ const Navbar = () => {
             className="text-white z-100 animate-pulse
               bg-[#004E64] hover:bg-[#004e64ab] focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 text-lg">
               <div>Hubungi kami</div>
 
-              <img className="w-5" src="./icons/whatsapp.png" alt="" />
+              <img className="w-6" src="./icons/whatsapp.png" alt="" />
             </div>
           </button>
           {/* <button
@@ -56,7 +56,7 @@ const Navbar = () => {
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 "
           id="navbar-sticky"
         >
-          <ul className="flex flex-col p-2  mt-4 font-bold text-lg opacity-100 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  ">
+          <ul className="flex flex-col p-2  mt-4 font-bold text-2xl opacity-100 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  ">
             <li>
               <a
                 href="#"
