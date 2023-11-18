@@ -4,7 +4,7 @@ import QuantityInformationCard from "../../components/dashboard/QuantityInformat
 const Home = () => {
   return (
     <>
-      <div className="font-montserrat text-gray-600 drop-shadow-lg">
+      <div className="font-montserrat text-gray-600 drop-shadow-lg -z-50">
         <div className=" flex items-center space-x-3">
           <h1 className="font-bold text-5xl">Hai Admin</h1>
           <img className="w-12" src="./icons/wave.png" alt="" />
