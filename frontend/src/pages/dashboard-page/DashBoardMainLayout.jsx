@@ -9,7 +9,7 @@ const DashBoardMainLayout = () => {
         <Navbar />
         <SideBar />
 
-        <div className="mt-16 ml-44 p-4">
+        <div className="ml-64 mt-28 p-7">
           <Outlet />
         </div>
       </div>

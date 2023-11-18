@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   return (
     <>
-      <aside className="fixed w-44 h-full  bg-[#004E64] ">
-        <ul className="mt-20 font-md px-4 space-y-2">
+      <aside className="fixed w-64 h-full  bg-[#004E64] ">
+        <ul className="mt-32 font-md px-6 space-y-2 text-xl">
           <li>
             <Link to={"/dashboard"}>
               <div
                 href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-700  group"
+                className="flex items-center p-2 text-gray-900 rounded-lg   hover:bg-gray-700  group"
               >
                 <svg
                   className="w-6 h-6 text-white dark:text-white"
@@ -88,7 +88,7 @@ const SideBar = () => {
           <div className="flex justify-center ">
             <button
               type="button"
-              className="flex items-center w-full mt-[310px] space-x-2  px-5 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-2 focus:ring-red-300 font-medium rounded-lg text-sm py-2.5 me-2 mb-2 "
+              className="flex items-center w-full mt-[600px] text-lg space-x-2  px-5 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-2 focus:ring-red-300 font-medium rounded-lg  py-2.5 me-2 mb-2 "
             >
               <svg
                 className=" h-5 text-white dark:text-dark"

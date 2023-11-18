@@ -69,7 +69,7 @@ const ListUser = () => {
     <>
       <div className="font-montserrat text-gray-600 drop-shadow-lg">
         <div className=" flex items-center space-x-3">
-          <h6 className="font-bold text-2xl">Data user</h6>
+          <h6 className="font-bold text-5xl">Data user</h6>
         </div>
 
         <div className="mt-9">
