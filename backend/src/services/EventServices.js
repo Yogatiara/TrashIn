@@ -19,6 +19,11 @@ export const getAllEventsService = async (
             },
           }
         : false,
+      _count: {
+        select: {
+          user_join_event: true,
+        },
+      },
     },
   });
 
@@ -27,15 +32,16 @@ export const getAllEventsService = async (
 
 export const getEventByIdService = async (
   id,
-  withImages = false,
-  withUsers = false
+  withImage = false,
+  withUsers = false,
+  withTPS = false
 ) => {
   const event = await prisma.eventVolunteer.findFirst({
     where: {
       id: parseInt(id),
     },
     include: {
-      event_images: withImages,
+      event_images: withImage,
       user_join_event: withUsers
         ? {
             include: {
@@ -43,6 +49,12 @@ export const getEventByIdService = async (
             },
           }
         : false,
+      tps: Boolean(withTPS) ?? false,
+      _count: {
+        select: {
+          user_join_event: true,
+        },
+      },
     },
   });
 
@@ -54,7 +66,7 @@ export const getEventByIdService = async (
 };
 
 export const createEventService = async (req) => {
-  const { name, start_at, end_at, notes, gather_point, quota, status, images } =
+  const { name, start_at, end_at, notes, gather_point, quota, status, tps_id } =
     req.body;
 
   const { files } = req;
@@ -76,6 +88,11 @@ export const createEventService = async (req) => {
       gather_point,
       quota: parseInt(quota),
       status,
+      tps: {
+        connect: {
+          id: parseInt(tps_id),
+        },
+      },
     },
   });
 
@@ -171,4 +188,20 @@ export const userEnrollEventService = async (id, req) => {
       event_volunteer_id: parseInt(id),
     },
   });
+};
+
+export const checkUserEnrollmentService = async (id, req) => {
+  const { user_id } = req.query;
+  const isRegistered = await prisma.user_Join_Event.findFirst({
+    where: {
+      user_id: parseInt(user_id),
+      event_volunteer_id: parseInt(id),
+    },
+  });
+
+  if (isRegistered) {
+    return true;
+  } else {
+    return false;
+  }
 };

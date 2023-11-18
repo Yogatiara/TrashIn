@@ -28,7 +28,8 @@ const getTPSByIdService = async (
   id,
   withImage = false,
   withUserFromImage = false,
-  withUser = false
+  withUser = false,
+  withEvent = false
 ) => {
   const tps = await prisma.tPS.findUnique({
     where: {
@@ -43,6 +44,13 @@ const getTPSByIdService = async (
           }
         : false,
       user: Boolean(withUser) ?? false,
+      events: Boolean(withEvent)
+        ? {
+            where: {
+              status: "OPEN",
+            },
+          }
+        : false,
     },
   });
 

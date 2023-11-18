@@ -42,8 +42,8 @@ const seedTPS = async () => {
         user: {
           connect: {
             id: 3,
-          }
-        }
+          },
+        },
       },
     });
   });
@@ -53,16 +53,19 @@ async function main() {
   await prisma.role.deleteMany();
   await prisma.user.deleteMany();
   await prisma.tPS.deleteMany();
-
-  seedRole();
-  console.log("Role data seeded successfully");
-
-  seedUser();
-  console.log("User data seeded successfully");
-  setTimeout(() => {
-    seedTPS();
-  }, 2000)
-  console.log("TPS data seeded successfully");
+  
+  
+  try {
+    await seedRole();
+    
+    await seedUser();
+    
+    setTimeout(async () => {
+      await seedTPS();
+    }, 2000);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 main()

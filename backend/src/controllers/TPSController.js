@@ -24,13 +24,14 @@ const getAllTPS = async (req, res, next) => {
 
 const getTPSById = async (req, res, next) => {
   try {
-    const { withImage, withUserFromImage, withUser } = req.query;
+    const { withImage, withUserFromImage, withUser, withEvent } = req.query;
     const { id } = req.params;
     const tps = await getTPSByIdService(
       id,
       withImage === "true",
       withUserFromImage === "true",
-      withUser === "true"
+      withUser === "true",
+      withEvent === "true"
     );
     res.status(200).json({
       status: "success",
