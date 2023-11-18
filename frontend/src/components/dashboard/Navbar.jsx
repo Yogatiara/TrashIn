@@ -1,7 +1,7 @@
 const Navbar = () => {
   return (
     <>
-      <nav className="bg-[#004E64] fixed w-full top-0 z-10 p-[30px] shadow-md border-b-[#2FC8B0] border-b box-border font-montserrat">
+      <nav className="bg-[#004E64] fixed w-full top-0 z-50 p-[30px] shadow-md border-b-[#2FC8B0] border-b box-border font-montserrat">
         <div className="max-w-screen flex flex-wrap items-center justify-between">
           <a href="/" className="flex items-center   justify-center ">
             <img className="w-12" src="/images/Logo-TrashIn.png" alt="Logo" />

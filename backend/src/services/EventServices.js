@@ -7,7 +7,8 @@ const prisma = new PrismaClient();
 
 export const getAllEventsService = async (
   withImages = false,
-  withUsers = false
+  withUsers = false,
+  withTPS = false
 ) => {
   const events = await prisma.eventVolunteer.findMany({
     include: {
@@ -19,6 +20,7 @@ export const getAllEventsService = async (
             },
           }
         : false,
+      tps: Boolean(withTPS) ?? false,
       _count: {
         select: {
           user_join_event: true,

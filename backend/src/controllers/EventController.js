@@ -9,12 +9,13 @@ import {
 } from "../services/EventServices.js";
 
 export const getAllEvents = async (req, res, next) => {
-  const { withImages, withUsers } = req.query;
+  const { withImages, withUsers, withTPS } = req.query;
 
   try {
     const events = await getAllEventsService(
       withImages === "true",
-      withUsers === "true"
+      withUsers === "true",
+      withTPS === "true"
     );
 
     res.status(200).json({
