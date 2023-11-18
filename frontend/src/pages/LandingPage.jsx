@@ -6,7 +6,7 @@ import Banner from "../components/landingpage/Banner";
 import ServiceCard from "../components/landingpage/cards/ServiceCard";
 import LogoFrame from "../components/landingpage/LogoFrame";
 import AboutUsCard from "../components/landingpage/cards/AboutUsCard";
-import Map from "../components/landingpage/Map";
+import Map from "../components/Map";
 import ScrollOnTopButton from "../components/landingpage/ScrollOntopButton";
 import Footer from "../components/landingpage/Footer";
 import EventCard from "../components/landingpage/cards/EventCard";
@@ -22,7 +22,7 @@ const LandingPage = () => {
           </Headroom>
         </div>
         <Banner />
-        <div className="mt-72 place-content-center font-montserrat ">
+        <div className="mt-60 place-content-center font-montserrat ">
           <h1 className="text-3xl font-bold text-[#004E64]  text-center ">
             Layanan yang kami berikan
           </h1>
@@ -32,7 +32,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center mt-72 space-x-16 font-montserrat ">
+        <div className="flex justify-center mt-60 space-x-16 font-montserrat ">
           <div>
             <LogoFrame />
           </div>
@@ -47,13 +47,13 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="w-[770px] mx-auto mt-48  font-montserrat">
+        <div className="w-[770px] mx-auto mt-32 font-montserrat">
           <h1 className="text-3xl font-bold text-[#004E64] text-center  ">
             Lokasi TPS Ilegal
           </h1>
 
           <div className="mt-16">
-            <Map />
+            <Map show={false} height={"[450px]"} weight={"full"} zoom={15} />
           </div>
         </div>
 
@@ -64,14 +64,14 @@ const LandingPage = () => {
           <div className="mt-20 mx-auto">
             <EventCard />
           </div>
-          <div className="mt-7">
+          <div className="mt-10">
             <a className="text-white" href="#">
               Lihat selangkapnya....
             </a>
           </div>
         </div>
 
-        <div className="mt-60">
+        <div className="mt-32">
           <Footer />
         </div>
       </div>

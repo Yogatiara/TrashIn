@@ -1,19 +1,12 @@
+import { Link } from "react-router-dom";
+
 const SideBar = () => {
   return (
     <>
-      <aside className="fixed w-44 h-full   bg-[#004E64] ">
-        {/* <div className="border-b-[#2FC8B0] border-b p-[10px]">
-          <a href="/" className="flex items-center   justify-center ">
-            <img className="w-8" src="./images/Logo-TrashIn.png" alt="Logo" />
-            <span className="">
-              <img className="w-24 mt-2.5" src="./images/rashIn.png" alt="" />
-            </span>
-          </a>
-        </div> */}
-
+      <aside className="fixed w-44 h-full  bg-[#004E64] ">
         <ul className="mt-20 font-md px-4 space-y-2">
           <li>
-            <a href="">
+            <Link to={"/dashboard"}>
               <div
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-700  group"
@@ -31,10 +24,10 @@ const SideBar = () => {
                   Home
                 </span>
               </div>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="">
+            <Link to={"/dashboard/list-user"}>
               <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                 <svg
                   className="h-5 text-white dark:text-black"
@@ -51,7 +44,7 @@ const SideBar = () => {
                   List User
                 </span>
               </div>
-            </a>
+            </Link>
           </li>
           <li>
             <a href="">
