@@ -6,7 +6,7 @@ import Banner from "../components/landingpage/Banner";
 import ServiceCard from "../components/landingpage/cards/ServiceCard";
 import LogoFrame from "../components/landingpage/LogoFrame";
 import AboutUsCard from "../components/landingpage/cards/AboutUsCard";
-import Map from "../components/landingpage/Map";
+import Map from "../components/Map";
 import ScrollOnTopButton from "../components/landingpage/ScrollOntopButton";
 import Footer from "../components/landingpage/Footer";
 import EventCard from "../components/landingpage/cards/EventCard";

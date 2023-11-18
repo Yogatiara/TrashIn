@@ -4,9 +4,9 @@ const Navbar = () => {
       <nav className="bg-[#004E64] fixed w-full top-0 z-10 p-[12px] shadow-md border-b-[#2FC8B0] border-b box-border font-montserrat">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between ml-2 mr-2">
           <a href="/" className="flex items-center   justify-center ">
-            <img className="w-8" src="./images/Logo-TrashIn.png" alt="Logo" />
+            <img className="w-8" src="/images/Logo-TrashIn.png" alt="Logo" />
             <span className="">
-              <img className="w-24 mt-2.5" src="./images/rashIn.png" alt="" />
+              <img className="w-24 mt-2.5" src="/images/rashIn.png" alt="" />
             </span>
           </a>
           <div className="flex items-center space-x-3 font-medium text-white">
