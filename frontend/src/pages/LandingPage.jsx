@@ -52,8 +52,8 @@ const LandingPage = () => {
             Lokasi TPS Ilegal
           </h1>
 
-          <div className="w-[66%] h-fit">
-            <Map />
+          <div className="w-[66%] h-[620px]">
+            <Map weight={"full"} height={"full"} zoom={15} show={false} />
           </div>
         </div>
 
