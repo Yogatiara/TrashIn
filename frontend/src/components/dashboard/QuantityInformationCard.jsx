@@ -5,13 +5,7 @@ import { getTpsData, getUserData, getEventData } from "../../api/fetching";
 const QuantityInformationCard = () => {
   const [tpsData, setTpsData] = useState([]);
   const [userData, setUserData] = useState([]);
-  const [eventData, setEventData] = useState([]);
 
-  useEffect(() => {
-    getEventData((res) => {
-      setTpsData(res);
-    });
-  });
   return (
     <>
       <div className="bg-[#33DDC3] w-[630px] h-[350px] p-7  shadow-xl font-montserrat rounded-xl text-center">
