@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/login/LoginForm";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const handleLoginSuccess = () => {
+    navigate("/");
+  };
+
   return (
     <aside style={{ display: "flex", flexDirection: "row", height: "100vh" }}>
       <div className="sidebar">
@@ -19,6 +25,7 @@ const Login = () => {
             </span>
           </div>
           <LoginForm />
+          <LoginForm onLoginSuccess={handleLoginSuccess} />
         </div>
       </div>
       <div className="content" style={{ flex: 6 }}>

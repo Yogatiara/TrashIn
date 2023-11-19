@@ -28,7 +28,7 @@ const EventCard = () => {
       .catch((err) => {
         throw new Error(err.message);
       });
-  });
+  }, []);
 
   // if (eventData.length === 0) {
   //   return;

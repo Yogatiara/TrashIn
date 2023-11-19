@@ -59,7 +59,7 @@ const ListUser = () => {
     positionActionsColumn: "last",
     enableRowActions: true,
     renderRowActions: ({ row }) => (
-      <Button to={`/dashboard/list-user/${row.original.id}`} />
+      <Button show={false} to={`/dashboard/list-user/${row.original.id}`} />
     ),
   });
 
