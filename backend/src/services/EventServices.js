@@ -71,14 +71,8 @@ export const createEventService = async (req) => {
   const { name, start_at, end_at, notes, gather_point, quota, status, tps_id } =
     req.body;
 
-  const { files } = req;
-
   if (status !== "OPEN" && status !== "CLOSED") {
     throw new ErrorResponse("Status must be OPEN or CLOSED", 400);
-  }
-
-  if (!files || files.length < 1) {
-    throw new ErrorResponse("Image must be at least 1", 400);
   }
 
   const event = await prisma.eventVolunteer.create({
@@ -98,9 +92,7 @@ export const createEventService = async (req) => {
     },
   });
 
-  if (files && files.length > 0) {
-    await insertImageService(event.id, req);
-  }
+  await insertImageService(event.id, req);
 
   return event;
 };
