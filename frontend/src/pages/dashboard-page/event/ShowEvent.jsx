@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../api/api";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
+
 const ShowEvent = () => {
   const { id } = useParams();
   const [event, setEvent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     api
@@ -13,6 +16,7 @@ const ShowEvent = () => {
         params: {
           withTPS: true,
           withImage: true,
+          withUsers: true,
         },
       })
       .then((res) => {
@@ -24,6 +28,18 @@ const ShowEvent = () => {
       .finally(() => setIsLoading(false));
   }, [id]);
 
+  const onUpdateEvent = (e) => {
+    e.preventDefault();
+
+    api
+      .put(`/event/${id}`, event)
+      .then((res) => {
+        console.log(res.data);
+        navigate("/dashboard/list-event");
+      })
+      .catch((err) => console.log(err.response.data));
+  };
+
   console.log(event);
   if (isLoading) {
     return <div>Loading...</div>;
@@ -33,7 +49,7 @@ const ShowEvent = () => {
     <div className="w-full h-fit bg-white p-4 rounded-lg">
       <h1 className="text-2xl font-bold">Detail Event - {id}</h1>
 
-      <form className="flex flex-col gap-2">
+      <form onSubmit={onUpdateEvent} className="flex flex-col gap-2">
         <div className="flex gap-4 items-center w-full">
           <div className="flex flex-col gap-1 flex-1">
             <label htmlFor="name">Nama Event</label>
@@ -156,20 +172,6 @@ const ShowEvent = () => {
                 Lihat poster
               </a>
             </label>
-            <input
-              type="file"
-              name="image"
-              id="image"
-              onChange={(e) => {
-                if (e.target.files.length === 0) return;
-                setEvent({
-                  ...event,
-                  image: e.target.files[0],
-                });
-              }}
-              className="flex-1 rounded-md border border-gray-300 file:h-full file:bg-[#2FC8B0]"
-              accept="image/*"
-            />
           </div>
         </div>
 
@@ -181,6 +183,24 @@ const ShowEvent = () => {
           Simpan Data
         </button>
       </form>
+
+      <div className="mt-8 flex flex-col gap-2 flex-1">
+        <h1 className="font-bold">Pengguna yang mendaftar</h1>
+
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2">
+            {event.user_join_event.map((data, index) => (
+              <div
+                key={data.id}
+                className="flex flex-row gap-2 border border-gray-300 rounded-md p-2"
+              >
+                <p>{index + 1}.</p>
+                <p>{data.user.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
