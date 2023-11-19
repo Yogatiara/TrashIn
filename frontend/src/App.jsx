@@ -9,11 +9,8 @@ import ListTps from "./pages/dashboard-page/tps/ListTps";
 import ShowUser from "./pages/dashboard-page/user/ShowUser";
 import ShowEvent from "./pages/dashboard-page/event/ShowEvent";
 import ShowTps from "./pages/dashboard-page/tps/ShowTps";
-<<<<<<< HEAD
 import EditAkun from "./pages/dashboard-page/EditAkun";
-=======
 import CreateEvent from "./pages/dashboard-page/event/CreateEvent";
->>>>>>> 85268f89781730438923617b36ce461ccbd5cd11
 
 const App = () => {
   return (
