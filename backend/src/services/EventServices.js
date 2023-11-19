@@ -68,7 +68,7 @@ export const getEventByIdService = async (
 };
 
 export const createEventService = async (req) => {
-  const { name, start_at, end_at, notes, gather_point, quota, status, tps_id } =
+  const { name, start_at, end_at, notes, gather_point, quota, status } =
     req.body;
 
   if (status !== "OPEN" && status !== "CLOSED") {
@@ -84,11 +84,6 @@ export const createEventService = async (req) => {
       gather_point,
       quota: parseInt(quota),
       status,
-      tps: {
-        connect: {
-          id: parseInt(tps_id),
-        },
-      },
     },
   });
 
