@@ -47,7 +47,7 @@ const SideBar = () => {
             </Link>
           </li>
           <li>
-            <Link to={'/dashboard/list-tps'}>
+            <Link to={"/dashboard/list-tps"}>
               <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                 <svg
                   className=" h-5 text-white dark:text-dark"
@@ -65,7 +65,7 @@ const SideBar = () => {
             </Link>
           </li>
           <li>
-            <Link to={'/dashboard/list-event'}>
+            <Link to={"/dashboard/list-event"}>
               <div
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group"

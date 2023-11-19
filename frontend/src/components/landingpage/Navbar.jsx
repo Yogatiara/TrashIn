@@ -1,4 +1,8 @@
 const Navbar = () => {
+  const handleClick = () => {
+    const whatsappLink = "http://wa.me/+6282266951933?text=Halo mimin 🙌🙌🙌 ";
+    window.location.href = whatsappLink;
+  };
   return (
     <>
       <nav className=" z-20 top-0 start-0 max-w-screen flex flex-wrap items-center justify-between mr-16 ml-16 p-4 ">
@@ -17,6 +21,7 @@ const Navbar = () => {
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse  p-1 ">
           <button
             type="button"
+            onClick={handleClick}
             className="text-white z-100 animate-pulse
               bg-[#004E64] hover:bg-[#004e64ab] focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
@@ -79,14 +84,6 @@ const Navbar = () => {
                 className="block py-2 px-3 text-white rounded hover:text-gray-300 md:hover:bg-transparent  md:p-0  "
               >
                 Kontak
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-white rounded hover:text-gray-300 md:hover:bg-transparent  md:p-0  "
-              >
-                Dashboard
               </a>
             </li>
           </ul>

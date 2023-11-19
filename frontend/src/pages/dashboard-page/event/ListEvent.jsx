@@ -6,6 +6,7 @@ import {
 } from "material-react-table";
 import api from "../../../api/api";
 import { Link } from "react-router-dom";
+import Loading from "../../../components/Loading/Loading";
 
 const ListEvent = () => {
   const [events, setEvents] = useState([]);
@@ -88,20 +89,34 @@ const ListEvent = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <div className="text-5xl font-bold animate-pulse italic ">
+          Loading.....
+        </div>
+      </>
+    );
   }
 
   return (
     <>
-      <div className="flex flex-row items-center justify-between mb-2">
-        <h1 className="text-2xl font-bold">Data Event Volunteer</h1>
-        <Link to="/dashboard/list-event/create">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <div className="font-montserrat text-gray-600 drop-shadow-lg ">
+        <div className="flex flex-row items-center justify-between mb-12">
+          <div className=" flex items-center space-x-3">
+            <h6 className="font-bold text-5xl">Data user</h6>
+          </div>{" "}
+        </div>
+        <Link
+          to="/dashboard/list-event/create"
+          className="flex justify-between mb-6"
+        >
+          <div></div>
+          <button className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded">
             Tambah Event
           </button>
         </Link>
+        <MaterialReactTable table={materialTable} />
       </div>
-      <MaterialReactTable table={materialTable} />
     </>
   );
 };

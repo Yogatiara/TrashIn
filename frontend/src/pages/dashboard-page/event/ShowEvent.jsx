@@ -163,11 +163,12 @@ const ShowEvent = () => {
             <label htmlFor="name">
               Poster (1920 x 1080){" "}
               <a
-                href={`http://localhost:5000/${
+                href={`http:///10.1.30.90:5000/${
                   event.event_images[0]?.path.split("public\\")[1]
                 }`}
                 className="underline text-blue-500"
                 target="_blank"
+                rel="noreferrer"
               >
                 Lihat poster
               </a>

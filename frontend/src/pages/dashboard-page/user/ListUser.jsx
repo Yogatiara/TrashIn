@@ -10,6 +10,7 @@ import Button from "../../../components/dashboard/button";
 
 const ListUser = () => {
   const [userData, setUserData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getUserData()
@@ -18,6 +19,9 @@ const ListUser = () => {
       })
       .catch((err) => {
         throw new Error(err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -59,12 +63,20 @@ const ListUser = () => {
     positionActionsColumn: "last",
     enableRowActions: true,
     renderRowActions: ({ row }) => (
-      <Button to={`/dashboard/list-user/${row.original.id}`} />
+      <Button show={false} to={`/dashboard/list-user/${row.original.id}`} />
     ),
   });
 
   if (userData.length === 0) {
     return;
+  }
+
+  if (isLoading) {
+    return (
+      <div className="text-5xl font-bold animate-pulse italic ">
+        Loading.....
+      </div>
+    );
   }
 
   return (

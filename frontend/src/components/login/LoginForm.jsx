@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const LoginForm = () => {
   return (
-    <div className="block max-w p-16 bg-gray-200 mx-32 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <div className="block max-w p-16 bg-gray-100 mx-32 border shadow-xl border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <h1 className="font-bold text-center text-6xl text-[#004E64]">Login</h1>
       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
         Email
@@ -47,12 +49,13 @@ const LoginForm = () => {
           placeholder="Password"
         />
       </div>
-      <button
+      <Link
+        to={"/dashboard"}
         type="button"
-        className="text-white bg-[#004E64] mt-10 place-content-center px-64 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        className="text-white bg-[#004E64] w-[500px] text-center mt-10 place-content-center hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
       >
         Masuk
-      </button>
+      </Link>
     </div>
   );
 };
