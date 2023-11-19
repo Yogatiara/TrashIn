@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-const ShowUser = () => {
+const EditForm = () => {
   const [showPasswordForm, setShowPasswordForm] = useState(false);
   const togglePasswordForm = () => {
     setShowPasswordForm(!showPasswordForm);
   };
-
+  
   return (
     <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <h1 className="font-bold text-5xl">Edit Akun Admin</h1>
@@ -43,7 +43,7 @@ const ShowUser = () => {
         </label>
         <div className="flex">
           <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-            <svg
+          <svg
               className="w-4 h-4 text-gray-500 dark:text-gray-400"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
@@ -149,10 +149,10 @@ const ShowUser = () => {
                 />
                 <label htmlFor="new-password">Confirm Password</label>
                 <svg
-                  className="w-4 h-4 inline-flex ml-1 text-gray-500 dark:text-gray-400"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                ></svg>
+                    className="w-4 h-4 inline-flex ml-1 text-gray-500 dark:text-gray-400"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  ></svg>
                 <input
                   type="password"
                   id="new-password"
@@ -169,9 +169,10 @@ const ShowUser = () => {
             </div>
           )}
         </div>
+        
       </div>
     </div>
   );
 };
 
-export default ShowUser;
+export default EditForm;
