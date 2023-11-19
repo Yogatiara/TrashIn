@@ -1,27 +1,33 @@
-import { useMemo } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useMemo, useState } from "react";
 import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
-import { useEffect, useState } from "react";
-
-import { getTpsData } from "../../../api/fetching";
-import Button from "../../../components/dashboard/button";
+import api from "../../../api/api";
+import { Link } from "react-router-dom";
 
 const ListTps = () => {
-  const [tpsData, setTpsData] = useState([]);
+  const [tps, setTps] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getTpsData()
+    api
+      .get("/tps", {
+        params: {
+          withUser: true,
+        },
+      })
       .then((res) => {
-        setTpsData(res);
+        setTps(res.data.data);
       })
       .catch((err) => {
-        throw new Error(err.message);
-      });
+        console.log(err.response.data);
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
-  const columns = useMemo(
+  const table = useMemo(
     () => [
       {
         accessorKey: "id",
@@ -29,51 +35,75 @@ const ListTps = () => {
         sortDescFirst: true,
       },
       {
-        accessorKey: "address", //access nested data with dot notation
-        header: "Adress",
-        size: 150,
+        accessorKey: "address",
+        header: "Nama",
       },
       {
-        accessorKey: "latitude", //access nested data with dot notation
-        header: "Latitude",
-        size: 150,
-      },
-      {
-        accessorKey: "longitude", //access nested data with dot notation
-        header: "Longitude",
-        size: 150,
+        accessorKey: "is_clean",
+        header: "Status",
+        Cell: ({ row }) => {
+          return (
+            <>
+              {row.original.is_clean ? (
+                <span className="text-green-500">Bersih</span>
+              ) : (
+                <span className="text-red-500">Belum bersih</span>
+              )}
+            </>
+          );
+        },
       },
       {
         accessorKey: "notes",
-        header: "Notes",
-        size: 150,
+        header: "Catatan",
+        maxSize: 600,
+        size: 180,
+      },
+      {
+        accessorKey: "user.name",
+        header: "Diinput oleh user",
       },
     ],
     []
   );
 
-  const table = useMaterialReactTable({
-    columns,
-    data: tpsData,
+  const materialTable = useMaterialReactTable({
+    columns: table,
+    data: tps,
     enableFullScreenToggle: false,
     positionActionsColumn: "last",
     enableRowActions: true,
-    renderRowActions: ({ row }) => (
-      <Button show={true} to={`/dashboard/list-tps/${row.original.id}`} />
-    ),
+    renderRowActions: ({ row }) => {
+      return (
+        <div className="flex flex-row gap-2">
+          <Link to={`/dashboard/list-tps/${row.original.id}`}>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Lihat
+            </button>
+          </Link>
+          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Hapus
+          </button>
+        </div>
+      );
+    },
   });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
-      <div className="font-montserrat text-gray-600 drop-shadow-lg">
-        <div className=" flex items-center space-x-3">
-          <h6 className="font-bold text-5xl">Data TPS ilegal</h6>
-        </div>
-
-        <div className="mt-9">
-          <MaterialReactTable table={table} />;
-        </div>
-      </div>
+      {/* <div className="flex flex-row items-center justify-between mb-2">
+        <h1 className="text-2xl font-bold">Data Event Volunteer</h1>
+        <Link to="/dashboard/list-event/create">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Tambah Event
+          </button>
+        </Link>
+      </div> */}
+      <MaterialReactTable table={materialTable} />
     </>
   );
 };

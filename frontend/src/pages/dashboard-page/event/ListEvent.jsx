@@ -95,7 +95,7 @@ const ListEvent = () => {
     <>
       <div className="flex flex-row items-center justify-between mb-2">
         <h1 className="text-2xl font-bold">Data Event Volunteer</h1>
-        <Link to="/dashboard/create-event">
+        <Link to="/dashboard/list-event/create">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Tambah Event
           </button>
