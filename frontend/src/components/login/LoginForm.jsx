@@ -1,7 +1,40 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../../api/api";
+
 const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const loginHandle = (e) => {
+    e.preventDefault();
+    api
+      .post("/login", { email, password })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        navigate("/");
+        navigate(0);
+      })
+      .catch(({ response }) => {
+        setError(response.data.msg);
+        setTimeout(() => setError(""), 3000);
+      });
+  };
   return (
-    <div className="block max-w p-16 bg-gray-200 mx-32 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <div
+      className="block max-w p-16 bg-gray-200 mx-32 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+      onSubmit={(e) => loginHandle(e)}
+    >
       <h1 className="font-bold text-center text-6xl text-[#004E64]">Login</h1>
+      {error && (
+        <>
+          <div className="text-dark text-sm font-bold text-red-500">
+            {error}
+          </div>
+        </>
+      )}
       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
         Email
       </label>
@@ -23,6 +56,8 @@ const LoginForm = () => {
           id="email-address-icon"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Email Address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -41,10 +76,12 @@ const LoginForm = () => {
           </svg>
         </div>
         <input
-          type="text"
+          type="password"
           id="email-address-icon"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <button
