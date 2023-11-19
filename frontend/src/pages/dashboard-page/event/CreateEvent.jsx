@@ -156,6 +156,7 @@ const CreateEvent = () => {
             zoom={14}
             show={false}
             onMarkerClick={onMarkerClick}
+            shadow={"sm"}
           />
         </div>
 

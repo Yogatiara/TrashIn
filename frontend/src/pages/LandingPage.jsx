@@ -53,7 +53,7 @@ const LandingPage = () => {
           </h1>
 
           <div className="w-[66%] h-[620px]">
-            <Map weight={"full"} height={"full"} zoom={15} show={false} />
+            <Map weight={"full"} height={"full"} zoom={13} show={false} />
           </div>
         </div>
 

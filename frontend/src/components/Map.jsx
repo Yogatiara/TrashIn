@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 import { getTpsData } from "../api/fetching";
 
-const Map = ({ height, weight, zoom, show, onMarkerClick }) => {
+const Map = ({ height, weight, zoom, show, onMarkerClick, shadow }) => {
   const [tpsData, setTpsData] = useState([]);
   useEffect(() => {
     getTpsData()
@@ -31,7 +31,7 @@ const Map = ({ height, weight, zoom, show, onMarkerClick }) => {
   return (
     <>
       <MapContainer
-        className={`h-${height} w-${weight} rounded-xl z-0 shadow-2xl`}
+        className={`h-${height} w-${weight} rounded-xl z-0 shadow-${shadow}`}
         center={[-0.433603, 116.984715]}
         zoom={zoom}
       >
@@ -55,7 +55,7 @@ const Map = ({ height, weight, zoom, show, onMarkerClick }) => {
                   eventHandlers={{
                     click: () => {
                       onMarkerClick(data);
-                    }
+                    },
                   }}
                 >
                   <Popup>

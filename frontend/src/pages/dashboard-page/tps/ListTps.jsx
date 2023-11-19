@@ -90,7 +90,11 @@ const ListTps = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="text-5xl font-bold animate-pulse italic ">
+        Loading.....
+      </div>
+    );
   }
 
   return (
@@ -103,7 +107,12 @@ const ListTps = () => {
           </button>
         </Link>
       </div> */}
-      <MaterialReactTable table={materialTable} />
+      <div className="font-montserrat text-gray-600 drop-shadow-lg">
+        <div className=" flex items-center space-x-3 mb-7">
+          <h6 className="font-bold text-5xl">Data TPS Ilegal</h6>
+        </div>
+        <MaterialReactTable table={materialTable} />
+      </div>
     </>
   );
 };

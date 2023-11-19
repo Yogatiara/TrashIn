@@ -10,6 +10,7 @@ import Button from "../../../components/dashboard/button";
 
 const ListUser = () => {
   const [userData, setUserData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getUserData()
@@ -18,6 +19,9 @@ const ListUser = () => {
       })
       .catch((err) => {
         throw new Error(err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -65,6 +69,14 @@ const ListUser = () => {
 
   if (userData.length === 0) {
     return;
+  }
+
+  if (isLoading) {
+    return (
+      <div className="text-5xl font-bold animate-pulse italic ">
+        Loading.....
+      </div>
+    );
   }
 
   return (
