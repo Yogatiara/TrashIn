@@ -10,9 +10,10 @@ const getTpsDataBYId = async (id) => {
   return res.data.data;
 }
 
-// const updateTpsData = async () => {
-//   const res = await api.put("")
-// }
+const updateTpsData = async (id) => {
+  const res = await api.put(`/tps/${id}`)
+  return res.data.data;
+}
 
 const getUserData = async () => {
   const res = await api.get("/user?withRoles=true");
@@ -24,11 +25,10 @@ const getEventData = async () => {
   return res.data.data;
 }
 
-
-
 export  {
   getTpsData,
   getUserData,
   getEventData,
-  getTpsDataBYId
+  getTpsDataBYId,
+  updateTpsData
 }

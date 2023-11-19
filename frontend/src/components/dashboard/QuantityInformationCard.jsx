@@ -1,11 +1,24 @@
+import { useState, useEffect } from "react";
+
+import { getTpsData, getUserData, getEventData } from "../../api/fetching";
+
 const QuantityInformationCard = () => {
+  const [tpsData, setTpsData] = useState([]);
+  const [userData, setUserData] = useState([]);
+  const [eventData, setEventData] = useState([]);
+
+  useEffect(() => {
+    getEventData((res) => {
+      setTpsData(res);
+    });
+  });
   return (
     <>
-      <div className="bg-[#33DDC3] w-[630px] h-[350px] p-8 py-3 shadow-xl font-montserrat rounded-xl text-center">
+      <div className="bg-[#33DDC3] w-[630px] h-[350px] p-7  shadow-xl font-montserrat rounded-xl text-center">
         <h1 className="font-bold text-md m">Informasi jumlah TPS ilegal</h1>
-        <div className="flex justify-center items-center mt-10 space-x-2 text-xl font-medium">
+        <div className="flex justify-center items-center mt-5 space-x-2 text-xl font-medium">
           <aside className="flex flex-col items-center ml-10">
-            <div className="border-r-4 border-blue-600 mr-12 p-4 rounded-md">
+            <div className="border-r-2 border-slate-400 mr-12 p-4 ">
               <h1 className="text-6xl mr-20">20</h1>
               <h2 className="mr-20">Tps Ilegal Kotor</h2>
             </div>
@@ -18,7 +31,7 @@ const QuantityInformationCard = () => {
           </aside>
         </div>
 
-        <div className="flex mt-0 mb-2 justify-between">
+        <div className="flex mb-6 justify-between">
           <div></div>
 
           <div>
