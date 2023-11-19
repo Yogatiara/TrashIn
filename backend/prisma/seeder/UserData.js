@@ -1,6 +1,6 @@
 export const UserData = [
   {
-    id: 1,
+    id: 3,
     name: "super-admin",
     email: "super@gmail.com",
     phone_number: "081234567890",
@@ -20,7 +20,7 @@ export const UserData = [
     role_id: 2,
   },
   {
-    id: 3,
+    id: 1,
     name: "Pengguna Biasa",
     email: "pengguna@gmail.com",
     phone_number: "081234567890",

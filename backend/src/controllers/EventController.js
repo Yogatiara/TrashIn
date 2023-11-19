@@ -31,7 +31,6 @@ export const getAllEvents = async (req, res, next) => {
 export const getEventById = async (req, res, next) => {
   const { withImage, withUsers, withTPS } = req.query;
   const { id } = req.params;
-  console.log(withImage, withTPS);
   try {
     const event = await getEventByIdService(
       id,
