@@ -85,11 +85,7 @@ const createTPSService = async (data) => {
 };
 
 const updateTPSService = async (id, data) => {
-  const { latitude, longitude, address, notes, user_id } = data;
-
-  if (!user_id) {
-    throw new ErrorResponse("User id is required", 400);
-  }
+  const { latitude, longitude, is_clean, address, notes } = data;
 
   const tps = await prisma.tPS.update({
     where: {
@@ -100,11 +96,7 @@ const updateTPSService = async (id, data) => {
       longitude,
       address,
       notes,
-      user: {
-        connect: {
-          id: parseInt(user_id),
-        },
-      },
+      is_clean: Boolean(is_clean) ?? false,
     },
   });
   return tps;

@@ -3,6 +3,9 @@ import { UserData } from "./UserData.js";
 import { RoleData } from "./RoleData.js";
 import bcrypt from "bcrypt";
 import { TPSData } from "./TPSData.js";
+import TPSImageData from "./TPSImageData.js";
+import EventData from "./EventData.js";
+import EventImageData from "./EventImageData.js";
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -41,7 +44,65 @@ const seedTPS = async () => {
         is_clean: tps.is_clean,
         user: {
           connect: {
-            id: 3,
+            id: tps.user_id,
+          },
+        },
+      },
+    });
+  });
+};
+
+const seedTpstImage = async () => {
+  return TPSImageData.map(async (eventImage) => {
+    await prisma.tPSImages.create({
+      data: {
+        img_name: eventImage.img_name,
+        path: eventImage.path,
+        tps: {
+          connect: {
+            id: eventImage.tps_id,
+          },
+        },
+        users: {
+          connect: {
+            id: eventImage.user_id,
+          },
+        },
+      },
+    });
+  });
+};
+
+const seedEvent = async () => {
+  return EventData.map(async (event) => {
+    await prisma.eventVolunteer.create({
+      data: {
+        name: event.name,
+        notes: event.notes,
+        gather_point: event.gather_point,
+        quota: event.quota,
+        start_at: new Date(event.start_at).toISOString(),
+        end_at: new Date(event.end_at).toISOString(),
+        status: event.status,
+        tps: {
+          connect: {
+            id: event.tps_id,
+          },
+        },
+      },
+    });
+  });
+};
+
+const seedEventImage = async () => {
+  return EventImageData.map(async (eventImage) => {
+    await prisma.eventImages.create({
+      data: {
+        img_name: eventImage.img_name,
+        path: eventImage.path,
+        event_volunteer: {
+          connect: {
+            id: eventImage.event_volunteer_id,
           },
         },
       },
@@ -50,29 +111,27 @@ const seedTPS = async () => {
 };
 
 async function main() {
-  await prisma.role.deleteMany();
-  await prisma.user.deleteMany();
-  await prisma.tPS.deleteMany();
-  
-  
+  const migrate = [
+    seedRole,
+    seedUser,
+    seedTPS,
+    seedEvent,
+    seedTpstImage,
+    seedEventImage,
+  ];
   try {
-    await seedRole();
-    
-    await seedUser();
-    
-    setTimeout(async () => {
-      await seedTPS();
-    }, 2000);
+    await Promise.all(
+      migrate.map(async (m) => {
+        await m();
+      })
+    );
   } catch (error) {
     console.log(error);
   }
 }
 
 main()
-  .then(async () => {
-    await prisma.$disconnect();
-  })
   .catch(async (e) => {
     console.error(e);
-    await prisma.$disconnect();
-  });
+  })
+  .finally(async () => await prisma.$disconnect());
