@@ -50,6 +50,20 @@ const ShowEvent = () => {
 
         <div className="flex gap-4 items-center w-full">
           <div className="flex flex-col gap-1 flex-1">
+            <label htmlFor="name">Status</label>
+            <select
+              value={event.status}
+              onChange={(e) => setEvent({ ...event, status: e.target.value })}
+              className="flex-1 rounded-md p-2"
+            >
+              <option value="OPEN">OPEN</option>
+              <option value="CLOSED">CLOSED</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="flex gap-4 items-center w-full">
+          <div className="flex flex-col gap-1 flex-1">
             <label htmlFor="name">Tanggal Mulai</label>
             <input
               type="date"
