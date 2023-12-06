@@ -6,7 +6,6 @@ import {
 } from "material-react-table";
 import api from "../../../api/api";
 import { Link } from "react-router-dom";
-import Loading from "../../../components/Loading/Loading";
 
 const ListEvent = () => {
   const [events, setEvents] = useState([]);
