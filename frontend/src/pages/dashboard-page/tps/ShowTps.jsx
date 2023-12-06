@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../../api/api";
-import moment from "moment";
+import { useNavigate } from "react-router-dom";
 const ShowEvent = () => {
   const { id } = useParams();
   const [tps, setTps] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     api
@@ -32,6 +33,7 @@ const ShowEvent = () => {
       .put(`/tps/${id}`, tps)
       .then((res) => {
         console.log(res.data);
+        navigate("/dashboard/list-tps");
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -68,9 +70,7 @@ const ShowEvent = () => {
             <label htmlFor="name">Sudah bersih</label>
             <select
               value={tps.is_clean}
-              onChange={(e) =>
-                setTps({ ...tps, is_clean: Boolean(e.target.value) })
-              }
+              onChange={(e) => setTps({ ...tps, is_clean: e.target.value })}
               className="flex-1 rounded-md p-2"
             >
               <option value={false}>Belum bersih</option>

@@ -103,7 +103,7 @@ const ListEvent = () => {
       <div className="font-montserrat text-gray-600 drop-shadow-lg ">
         <div className="flex flex-row items-center justify-between mb-12">
           <div className=" flex items-center space-x-3">
-            <h6 className="font-bold text-5xl">Data user</h6>
+            <h6 className="font-bold text-5xl">Data Event Volunteer</h6>
           </div>{" "}
         </div>
         <Link

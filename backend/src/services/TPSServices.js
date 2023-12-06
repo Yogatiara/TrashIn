@@ -87,16 +87,17 @@ const createTPSService = async (data) => {
 const updateTPSService = async (id, data) => {
   const { latitude, longitude, is_clean, address, notes } = data;
 
+  console.log(is_clean, Boolean(is_clean));
   const tps = await prisma.tPS.update({
     where: {
       id: parseInt(id),
     },
     data: {
-      latitude,
-      longitude,
+      latitude: parseFloat(latitude),
+      longitude: parseFloat(longitude),
       address,
       notes,
-      is_clean: Boolean(is_clean) ?? false,
+      is_clean: is_clean == "false" ? false : true,
     },
   });
   return tps;

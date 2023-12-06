@@ -5,21 +5,74 @@ import { getTpsData, getUserData, getEventData } from "../../api/fetching";
 const QuantityInformationCard = () => {
   const [tpsData, setTpsData] = useState([]);
   const [userData, setUserData] = useState([]);
+  const [eventData, setEventData] = useState([]);
+  const [tpsClean, setTpsClean] = useState([]);
+
+
+  useEffect(() => {
+    getUserData()
+      .then((res) => {
+        if(res.length === 0) {
+          return;
+        }
+        setUserData(res);
+      }).catch((err) => {
+        throw new Error(err);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    getEventData()
+      .then((res) => {
+        if(res.length === 0) {
+          return;
+        }
+       setEventData(res);
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    getTpsData()
+      .then((res) => {
+        if(res.length === 0) {
+          return;
+        }
+        if(res.is_clean === true) {
+          setTpsClean(res)
+        }
+       setTpsData(res);
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
+  }, []);
+
+
+
+
+
+
 
   return (
     <>
+    <div>
+
       <div className="bg-[#33DDC3] w-[630px] h-[350px] p-7  shadow-xl font-montserrat rounded-xl text-center">
         <h1 className="font-bold text-md m">Informasi jumlah TPS ilegal</h1>
         <div className="flex justify-center items-center mt-5 space-x-2 text-xl font-medium">
           <aside className="flex flex-col items-center ml-10">
             <div className="border-r-2 border-slate-400 mr-12 p-4 ">
-              <h1 className="text-6xl mr-20">4</h1>
+              <h1 className="text-6xl mr-20">{tpsData.filter(tps => tps.is_clean !== true).length}</h1>
               <h2 className="mr-20">Tps Ilegal Kotor</h2>
             </div>
           </aside>
           <aside className="flex flex-col items-center">
             <div className="px-6 py-12 rounded-md">
-              <h1 className="text-6xl">3</h1>
+              <h1 className="text-6xl">{tpsData.filter(tps => tps.is_clean !== false).length}</h1>
               <label>Tps Ilegal Bersih</label>
             </div>
           </aside>
@@ -51,7 +104,7 @@ const QuantityInformationCard = () => {
       <div className="flex items-center mt-7 space-x-5 text-center">
         <div className="bg-[#33DDC3] w-80 h-80  shadow-xl rounded-xl p-6">
           <p className="font-bold">Jumlah User</p>
-          <p className="text-5xl mt-20 font-medium">30</p>
+          <p className="text-5xl mt-20 font-medium">{userData.length}</p>
           <div className="flex justify-between mt-16">
             <div></div>
             <svg
@@ -67,7 +120,7 @@ const QuantityInformationCard = () => {
         </div>
         <div className="bg-[#33DDC3] w-72 h-80  shadow-xl rounded-xl p-6">
           <p className="font-bold">Jumlah Kegiatan</p>
-          <p className="text-5xl mt-20 font-medium">8</p>
+          <p className="text-5xl mt-20 font-medium">{eventData.length}</p>
           <div className="flex justify-between mt-16">
             <div></div>
             <svg
@@ -89,6 +142,8 @@ const QuantityInformationCard = () => {
           </div>
         </div>
       </div>
+    </div>
+    
     </>
   );
 };
